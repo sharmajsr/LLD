@@ -4,7 +4,7 @@
 // can add Expense
 // can edit Expense
 // expense can be split into 3 type ( equal exact percent ) 
-// enhancement : 
+// enhancement : how to maintain balance for each user ? like how much each owe to other ? use a map<int,map<int,double>>debtMatrix; where debtMatrix[x][y] tells how much x has to be pay/collect from y.
 #include<bits/stdc++.h>
 using namespace std;
 enum class SplitType{
@@ -108,7 +108,7 @@ class ExpenseManager{
             
             case SplitType::PERCENT:{
                 for(int i=0;i<owes.size();i++){
-                    int percentSplitValue = (values[i]*100)/totalAmount;
+                    int percentSplitValue = values[i] * 0.01 * totalAmount;
                     PercentSplit* percentSplit = new PercentSplit(owes[i],percentSplitValue);
                     localSplit.push_back(percentSplit);
                 }
@@ -131,6 +131,7 @@ int main(){
     User u1("shubham",1);
     User u2("surya",2);
     User u3("saket",3);
+    User u4("surbhi",4);
     
     ExpenseManager em;
     em.addUser(u1);
